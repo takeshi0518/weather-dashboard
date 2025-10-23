@@ -17,10 +17,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <div className="flex h-screen">
+        <div className="flex flex-col md:flex-row h-screen">
           <Sidebar />
 
-          <main className="flex-1 overflow-auto bg-gray-50 p-6">
+          <main className="flex-1 overflow-auto bg-gray-50 p-6 pt-20 md:pt-6">
             {children}
           </main>
         </div>
