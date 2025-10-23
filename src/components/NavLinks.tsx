@@ -1,22 +1,26 @@
-import Link from 'next/link';
+'use client';
 
-const links = [
-  { name: 'Dashboard', href: '/dashboard' },
-  { name: 'Greenergy', href: '/greenergy' },
-  { name: 'Ccalendar', href: '/ccalendar' },
-];
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { navLinks } from '@/config/navigation';
 
 export default function NavLinks() {
+  const pathname = usePathname();
   return (
     <>
-      {links.map((link) => {
+      {navLinks.map((link) => {
+        const isActive = pathname === link.href;
+        const Icon = link.icon;
         return (
           <li key={link.name}>
             <Link
               href={link.href}
-              className="block p-3 rounded-lg hover:bg-gray-800 transition-colors md:p-3 text-sm md:text-base"
+              className={`flex items-center gap-2 p-3 rounded-lg text-sm md:text-base
+                ${isActive ? 'bg-gray-800' : 'hover:bg-gray-800'}
+                `}
             >
-              {link.name}
+              <Icon className="w-6 h-6 md:w-5 md:h-5" />
+              <span className="hidden md:inline">{link.name}</span>
             </Link>
           </li>
         );
