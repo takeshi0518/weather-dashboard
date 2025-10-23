@@ -13,7 +13,7 @@ export default function Sidebar() {
         </nav>
       </header>
 
-      <aside className="hidden md:flex flex-col w-64 h-full bg-gray-900 text-white p-4">
+      <aside className="hidden md:flex flex-col w-52 h-full bg-gray-900 text-white p-4">
         <div className="mb-8">
           <MainLogo />
         </div>
