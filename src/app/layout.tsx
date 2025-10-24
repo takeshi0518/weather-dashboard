@@ -20,7 +20,7 @@ export default function RootLayout({
         <div className="flex flex-col md:flex-row h-screen">
           <Navbar />
 
-          <main className="flex-1 overflow-auto bg-gray-50 p-6 pt-20 md:pt-6">
+          <main className="flex-1 overflow-auto bg-gray-50 p-6 pt-28 md:pt-6">
             {children}
           </main>
         </div>
