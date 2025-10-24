@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const formatDateTolocal = (
+export const formatDateToLocal = (
   dateStr: string | number,
   locale: string = 'ja-JP'
 ) => {
