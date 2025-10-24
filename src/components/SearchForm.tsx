@@ -37,7 +37,10 @@ export default function SearchForm() {
           }}
           className={`flex-1 ${error ? 'border-red-500' : ''}`}
         />
-        <Button onClick={handleSearch} className="cursor-pointer">
+        <Button
+          onClick={handleSearch}
+          className="cursor-pointer bg-gray-900 text-white"
+        >
           <Search className="w-4 h-4" />
           検索
         </Button>
