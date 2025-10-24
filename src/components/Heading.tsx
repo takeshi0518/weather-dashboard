@@ -1,13 +1,11 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import LiveTime from './LiveTime';
+import SearchForm from './SearchForm';
 
 export default function Heading() {
   return (
-    <section>
+    <section className="space-y-6">
       <LiveTime />
-      <Button />
-      <Input />
+      <SearchForm />
     </section>
   );
 }
