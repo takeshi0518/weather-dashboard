@@ -13,14 +13,17 @@ import {
 } from 'lucide-react';
 
 import { WeatherData } from '@/types/weather';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getWeatherByCity } from '@/lib/weather-api';
+import { formatDateTime, formatTemp } from '@/lib/format';
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState('');
 
-  console.log(weatherData);
+  useEffect(() => {
+    handleSearch('東京');
+  }, []);
 
   const handleSearch = async (city: string) => {
     setError('');
@@ -35,15 +38,15 @@ export default function Home() {
   };
 
   const weatherDatas = {
-    city: '大阪府',
-    temp: 25,
-    description: '晴れ',
-    humidity: 60,
-    windSpeed: 3.5,
-    pressure: 1013,
-    feelsLike: 23,
-    sunrise: '05:30',
-    sunset: '18:45',
+    city: weatherData?.name,
+    temp: formatTemp(weatherData?.main.temp!),
+    description: weatherData?.weather[0].description,
+    humidity: weatherData?.main.humidity,
+    windSpeed: weatherData?.wind.speed,
+    pressure: weatherData?.main.pressure,
+    feelsLike: weatherData?.main.feels_like,
+    sunrise: formatDateTime(weatherData?.sys.sunrise!),
+    sunset: formatDateTime(weatherData?.sys.sunset!),
   };
 
   const details = [
