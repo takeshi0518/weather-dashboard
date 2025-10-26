@@ -11,7 +11,6 @@ import {
 } from 'lucide-react';
 
 export default function Home() {
-  
   const weatherData = {
     city: '大阪府',
     temp: 25,
