@@ -1,11 +1,17 @@
+'use client';
+
 import LiveTime from './LiveTime';
 import SearchForm from './SearchForm';
 
-export default function Heading() {
+interface HeadingProps {
+  onSearch: (city: string) => void;
+}
+
+export default function Heading({ onSearch }: HeadingProps) {
   return (
     <section className="space-y-6">
       <LiveTime />
-      <SearchForm />
+      <SearchForm onSearch={onSearch} />
     </section>
   );
 }

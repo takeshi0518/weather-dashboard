@@ -1,10 +1,11 @@
-import { Card, CardContent } from '@/components/ui/card';
 import { LucideIcon } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+
 
 interface WeatherDetailCardProps {
   icon: LucideIcon;
   label: string;
-  value: string | number;
+  value: string | number | undefined;
   unit?: string;
   iconColor?: string;
 }

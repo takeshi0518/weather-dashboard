@@ -5,22 +5,24 @@ import { Input } from '@/components/ui/input';
 import { useEffect, useState } from 'react';
 import { Search } from 'lucide-react';
 
-export default function SearchForm() {
+interface SearchFormProps {
+  onSearch: (city: string) => void;
+}
+
+export default function SearchForm({ onSearch }: SearchFormProps) {
   const [query, setQuery] = useState('');
   const [error, setError] = useState('');
 
   const handleSearch = () => {
     if (!query.trim()) {
       setError('市区町村名または郵便番号を入力してください');
+      setTimeout(() => setError(''), 3000);
       return;
     }
-    console.log('検索', query);
-  };
 
-  useEffect(() => {
-    const timer = setTimeout(() => setError(''), 3000);
-    return () => clearTimeout(timer);
-  }, [error]);
+    setError('');
+    onSearch(query);
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">

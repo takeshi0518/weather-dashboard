@@ -2,9 +2,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { CloudSun } from 'lucide-react';
 
 interface MainWeatherCardProps {
-  city: string;
-  temp: number;
-  description: string;
+  city: string | undefined;
+  temp: number | undefined;
+  description: string | undefined;
 }
 
 export default function MainWeathrCard({
