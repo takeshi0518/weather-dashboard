@@ -4,7 +4,8 @@ const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY;
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 export async function getWeatherByCity(city: string): Promise<WeatherData> {
-  const url = `${BASE_URL}?q=${city}&appid=${API_KEY}&units=metric&lang=ja`;
+  const encodedCity = encodeURIComponent(city);
+  const url = `${BASE_URL}?q=${encodedCity}&appid=${API_KEY}&units=metric&lang=ja`;
 
   const response = await fetch(url);
 
