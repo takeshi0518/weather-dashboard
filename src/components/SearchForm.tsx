@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Search } from 'lucide-react';
 
 interface SearchFormProps {
@@ -15,7 +15,7 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
 
   const handleSearch = () => {
     if (!query.trim()) {
-      setError('市区町村名または郵便番号を入力してください');
+      setError('都道府県名を入力してください。');
       setTimeout(() => setError(''), 3000);
       return;
     }
@@ -29,7 +29,7 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
       <div className="flex gap-2">
         <Input
           type="text"
-          placeholder="市区町村名または郵便番号を入力"
+          placeholder="都道府県名を入力してください。(例: 東京都 大阪府)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => {
