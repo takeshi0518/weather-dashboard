@@ -14,7 +14,7 @@ export default function LiveTime() {
     return () => clearInterval(timer);
   }, []);
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+    <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 xl:flex-1">
       <div className="space-y-2">
         <div className="text-2xl md:text-3xl text-gray-900">
           {formatTimeToLocal(currentTime)}
