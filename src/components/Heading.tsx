@@ -9,7 +9,7 @@ interface HeadingProps {
 
 export default function Heading({ onSearch }: HeadingProps) {
   return (
-    <section className="space-y-6">
+    <section className="space-y-6 lg:space-y-0 xl:flex xl:items-center xl:justify-between xl:gap-6">
       <LiveTime />
       <SearchForm onSearch={onSearch} />
     </section>

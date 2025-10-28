@@ -25,11 +25,11 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+    <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 space-y-3 xl:min-w-[600px]">
       <div className="flex gap-2">
         <Input
           type="text"
-          placeholder="都道府県名を入力してください。(例: 東京都 大阪府)"
+          placeholder="都道府県を入力 (例: 東京都 大阪府)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => {
@@ -43,8 +43,8 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
           onClick={handleSearch}
           className="cursor-pointer bg-gray-900 text-white"
         >
-          <Search className="w-4 h-4" />
-          検索
+          <Search className="w-4 h-4 sm:mr-2" />
+          <span className="hidden sm:inline">検索</span>
         </Button>
       </div>
       {error && <p className="text-sm text-red-600">{error}</p>}
