@@ -141,19 +141,24 @@ export default function Home() {
         temp={weatherDatas.temp}
         description={weatherDatas.description}
       />
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {details.map((detail, index) => {
-          return (
-            <MainWeatherDetailCard
-              key={index}
-              icon={detail.icon}
-              label={detail.label}
-              value={detail.value}
-              unit={detail.unit}
-              iconColor={detail.iconColor}
-            />
-          );
-        })}
+      <div className="space-y-5">
+        <h3 className="text-base md:text-lg font-semibold text-gray-700 px-1 pb-2 border-b border-gray-200">
+          今日の詳細情報
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          {details.map((detail, index) => {
+            return (
+              <MainWeatherDetailCard
+                key={index}
+                icon={detail.icon}
+                label={detail.label}
+                value={detail.value}
+                unit={detail.unit}
+                iconColor={detail.iconColor}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
