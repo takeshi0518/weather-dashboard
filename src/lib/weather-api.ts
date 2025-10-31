@@ -9,7 +9,7 @@ if (!API_KEY) {
   throw new Error('NEXT_PUBLIC_OPENWEATHER_API_KEYが設定されていません。');
 }
 
-/*現在の天気を取得*/
+/*天気を取得(今日)*/
 export async function getWeatherByCity(city: string): Promise<WeatherData> {
   const convertedCity = convertCityName(city);
 
@@ -32,7 +32,7 @@ export async function getWeatherByCity(city: string): Promise<WeatherData> {
   return data;
 }
 
-/*明日の天気情報を取得*/
+/*天気情報を取得(未来)*/
 export async function getForecastWeatherByCity(
   city: string
 ): Promise<ForecastData> {
