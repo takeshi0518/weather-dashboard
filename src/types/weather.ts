@@ -36,8 +36,8 @@ export interface WeatherData {
 export interface ForecastData {
   cod: string;
   message: number;
-  cnt: numver;
-  list: ForcastItem[];
+  cnt: number;
+  list: ForecastItem[];
   city: {
     id: number;
     name: string;
