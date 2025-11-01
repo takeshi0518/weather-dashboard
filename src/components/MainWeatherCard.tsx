@@ -4,14 +4,18 @@ import DailyWeather from './DailyWeather';
 
 interface MainWeatherCardProps {
   city: string | undefined;
-  temp: number | undefined;
-  description: string | undefined;
+  todayTemp: number | undefined;
+  todayDescription: string | undefined;
+  tomorrowTemp: number | undefined;
+  tomorrowDescription: string | undefined;
 }
 
 export default function MainWeathrCard({
   city,
-  temp,
-  description,
+  todayTemp,
+  todayDescription,
+  tomorrowTemp,
+  tomorrowDescription,
 }: MainWeatherCardProps) {
   return (
     <Card className="col-span-full">
@@ -25,16 +29,16 @@ export default function MainWeathrCard({
         <div className="flex justify-around">
           <DailyWeather
             label="今日"
-            temp={temp}
-            description={description}
+            temp={todayTemp}
+            description={todayDescription}
             iconColor="text-blue-500"
           />
           <ArrowRight className="w-8 h-8 md:w-12 md:h-12 text-gray-400 hidden md:block" />
 
           <DailyWeather
             label="明日"
-            temp={temp}
-            description={description}
+            temp={tomorrowTemp}
+            description={tomorrowDescription}
             iconColor="text-blue-500"
           />
         </div>

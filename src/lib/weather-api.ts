@@ -57,7 +57,7 @@ export async function getForecastWeatherByCity(
   return data;
 }
 
-export async function getTodyAndTomorroWeather(city: string) {
+export async function getTodayAndTomorrowWeather(city: string) {
   const [today, forecast] = await Promise.all([
     getWeatherByCity(city),
     getForecastWeatherByCity(city),
