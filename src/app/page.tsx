@@ -12,14 +12,20 @@ import {
   Thermometer,
 } from 'lucide-react';
 
-import { WeatherData } from '@/types/weather';
+import { WeatherData, ForecastData } from '@/types/weather';
 import { useEffect, useState } from 'react';
-import { getWeatherByCity } from '@/lib/weather-api';
+import {
+  getTodayAndTomorrowWeather,
+  getWeatherByCity,
+} from '@/lib/weather-api';
 import { formatDateTime, formatTemp } from '@/lib/format';
 import { Skeleton } from '@/components/ui/skeleton';
+import { getTomorrowForecast } from '@/lib/weather-helpers';
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  const [forecastWeatherData, setForecastWeatherData] =
+    useState<ForecastData | null>(null);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,8 +38,9 @@ export default function Home() {
     setError('');
 
     try {
-      const data = await getWeatherByCity(city);
-      setWeatherData(data);
+      const { today, forecast } = await getTodayAndTomorrowWeather(city);
+      setWeatherData(today);
+      setForecastWeatherData(forecast);
       setError('');
     } catch (error) {
       setError('お天気情報の取得に失敗しました。都市名を確認してください。');
@@ -76,9 +83,9 @@ export default function Home() {
     );
   }
 
-  if (!weatherData) return null;
+  if (!weatherData || !forecastWeatherData) return null;
 
-  const weatherDatas = {
+  const todayData = {
     city: weatherData.name,
     temp: formatTemp(weatherData.main.temp),
     description: weatherData.weather[0].description,
@@ -94,52 +101,60 @@ export default function Home() {
     {
       icon: Thermometer,
       label: '体感温度',
-      value: weatherDatas.feelsLike,
+      value: todayData.feelsLike,
       unit: '℃',
       iconColor: 'text-red-500',
     },
     {
       icon: Droplets,
       label: '湿度',
-      value: weatherDatas.humidity,
+      value: todayData.humidity,
       unit: '%',
       iconColor: 'text-blue-500',
     },
     {
       icon: Wind,
       label: '風速',
-      value: weatherDatas.windSpeed,
+      value: todayData.windSpeed,
       unit: 'm/s',
       iconColor: 'text-gray-500',
     },
     {
       icon: Gauge,
       label: '気圧',
-      value: weatherDatas.pressure,
+      value: todayData.pressure,
       unit: 'hPa',
       iconColor: 'text-purple-500',
     },
     {
       icon: Sunrise,
       label: '日の出',
-      value: weatherDatas.sunrise,
+      value: todayData.sunrise,
       iconColor: 'text-orange-500',
     },
     {
       icon: Sunset,
       label: '日没',
-      value: weatherDatas.sunset,
+      value: todayData.sunset,
       iconColor: 'text-orange-500',
     },
   ];
+
+  const tomorrowForecast = getTomorrowForecast(forecastWeatherData);
+  const tomorrowData = {
+    temp: formatTemp(tomorrowForecast.main.temp),
+    description: tomorrowForecast.weather[0].description,
+  };
 
   return (
     <div className="space-y-5">
       <Heading onSearch={handleSearch} />
       <MainWeatherCard
-        city={weatherDatas.city}
-        temp={weatherDatas.temp}
-        description={weatherDatas.description}
+        city={todayData.city}
+        todayTemp={todayData.temp}
+        todayDescription={todayData.description}
+        tomorrowTemp={tomorrowData.temp}
+        tomorrowDescription={tomorrowData.description}
       />
       <div className="space-y-5">
         <h3 className="text-base md:text-lg font-semibold text-gray-700 px-1 pb-2 border-b border-gray-200">
