@@ -16,3 +16,15 @@ export function getTomorrowForecast(forecastData: ForecastData): ForecastItem {
     return currDiff < prevDiff ? curr : prev;
   });
 }
+
+export function getWeatherIcons(description: string | undefined): string {
+  if (!description) return '⛅️';
+
+  if (description.includes('晴')) return '☀️';
+  if (description.includes('曇')) return '☁️';
+  if (description.includes('雨')) return '🌧️';
+  if (description.includes('雪')) return '☃️';
+  if (description.includes('雷')) return '⚡️';
+
+  return '⛅️';
+}

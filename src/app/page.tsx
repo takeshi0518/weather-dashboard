@@ -105,8 +105,10 @@ export default function Home() {
         city={weatherData?.city}
         todayTemp={weatherData?.todayTemp}
         todayDescription={weatherData?.todayDescription}
+        todayWeatherIcon={weatherData?.todayWeatherIcon}
         tomorrowTemp={weatherData?.tomorrowTemp}
         tomorrowDescription={weatherData?.tomorrowDescription}
+        tomorrowWeatherIcon={weatherData?.tomorrowWeatherIcon}
       />
       <div className="space-y-5">
         <h3 className="text-base md:text-lg font-semibold text-gray-700 px-1 pb-2 border-b border-gray-200">

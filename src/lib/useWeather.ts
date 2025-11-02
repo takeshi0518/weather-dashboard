@@ -2,14 +2,16 @@ import { useState, useCallback } from 'react';
 import { ForecastData, WeatherData } from '@/types/weather';
 import { getTodayAndTomorrowWeather } from './weather-api';
 import { formatDateTime, formatTemp } from './format';
-import { getTomorrowForecast } from './weather-helpers';
+import { getTomorrowForecast, getWeatherIcons } from './weather-helpers';
 
 interface FormattedWeatherData {
   city: string;
   todayTemp: number;
   todayDescription: string;
+  todayWeatherIcon: string;
   tomorrowTemp: number;
   tomorrowDescription: string;
+  tomorrowWeatherIcon: string;
   details: {
     humidity: number;
     windSpeed: number;
@@ -52,11 +54,15 @@ export function useWeather() {
           city: weatherData.name,
           todayTemp: formatTemp(weatherData.main.temp),
           todayDescription: weatherData.weather[0].description,
+          todayWeatherIcon: getWeatherIcons(weatherData.weather[0].description),
           tomorrowTemp: formatTemp(
             getTomorrowForecast(forecastWeatherData).main.temp
           ),
           tomorrowDescription:
             getTomorrowForecast(forecastWeatherData).weather[0].description,
+          tomorrowWeatherIcon: getWeatherIcons(
+            getTomorrowForecast(forecastWeatherData).weather[0].description
+          ),
           details: {
             humidity: weatherData.main.humidity,
             windSpeed: weatherData.wind.speed,
