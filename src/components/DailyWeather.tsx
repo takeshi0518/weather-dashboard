@@ -4,14 +4,14 @@ interface DailyWeatherProps {
   label: string | undefined;
   temp: number | undefined;
   description: string | undefined;
-  iconColor?: string;
+  weatherIcon: string | undefined;
 }
 
 export default function DailyWeather({
   label,
   temp,
   description,
-  iconColor = 'text-blue-500',
+  weatherIcon,
 }: DailyWeatherProps) {
   return (
     <div className="text-center space-y-2">
@@ -19,7 +19,7 @@ export default function DailyWeather({
         {label}
       </h2>
       <div className="flex flex-col md:flex-row items-center gap-3 mt-4">
-        <CloudSun className={`w-12 md:w-14 h-12 md:h-14 ${iconColor}`} />
+        <p>{weatherIcon}</p>
         <div className="md:ml-3">
           <div className="text-3xl md:text-4xl font-bold text-gray-900">
             {temp}℃
