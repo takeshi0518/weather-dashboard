@@ -16,3 +16,11 @@ test.describe('天気アプリ', () => {
     ).toBeVisible();
   });
 });
+
+test('都市検索', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForSelector('text=東京都の天気');
+  await page.fill('input[type="text"]', '大阪');
+  await page.click('button[type="submit"]');
+  await expect(page.locator('text=大阪市の天気')).toBeVisible();
+});
