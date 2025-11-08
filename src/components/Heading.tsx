@@ -1,7 +1,9 @@
 'use client';
 
-import LiveTime from './LiveTime';
 import SearchForm from './SearchForm';
+import dynamic from 'next/dynamic';
+
+const LiveTime = dynamic(() => import('./LiveTime'), { ssr: false });
 
 interface HeadingProps {
   onSearch: (city: string) => void;
