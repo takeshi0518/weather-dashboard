@@ -2,6 +2,8 @@
 
 リアルタイムで天気情報を取得・表示する天気ダッシュボードアプリケーション
 
+**本番環境**: [https://weather-dashboard-phi-two.vercel.app](https://weather-dashboard-phi-two.vercel.app)
+
 ## 機能
 
 - **都道府県名で検索** - 日本語入力に対応
@@ -63,6 +65,57 @@ $ npm run dev
 
 ```
 http://localhost:3000
+```
+
+## テスト
+
+### E2E テストの実行
+
+```bash
+# テストを実行
+$ npm run test
+
+# UIモードで実行
+$ npm run test:ui
+
+# 特定のブラウザで実行
+$ npm run test -- --porject=choromium
+```
+
+### ビルドの確認
+
+```bash
+# 本番用ビルド
+npm run build
+
+# 本番モードで起動
+npm start
+```
+
+## CI/CD
+
+### Github Actions ワークフロー
+
+PR または main ブランチへの push 時に自動実行：
+
+1. **テスト** - Playwright E2E テスト
+2. **プレビューデプロイ** - PR 作成時に自動デプロイ
+3. **本番デプロイ** - main ブランチマージ時に自動デプロイ
+
+### デプロイフロー
+
+```
+feature branch → PR作成
+  ↓
+E2Eテスト実行
+  ↓
+プレビュー環境にデプロイ
+  ↓
+レビュー & 確認
+  ↓
+mainにマージ
+  ↓
+本番環境に自動デプロイ
 ```
 
 ### 日本語対応の実装
